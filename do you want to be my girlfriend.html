@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+    }
+    div.box{
+        margin: auto;
+        margin-top: 100px;
+        background-color: aqua;
+        width: 700px;
+        text-align: center;
+    }
+    div.yesNoBox{
+        position: relative;
+        background-color: red;
+        height: 250px;
+    }
+    div.yes, div.no{
+        position: absolute;
+        height: 40px;
+        width: 100px;
+        top: 150px;
+        cursor: pointer;
+    }
+    div.no{
+        right: 100px;
+        background-color: gray;
+    }
+    div.yes{
+        background-color: yellow;
+        left: 100px;
+    }
+    h1.sheSaidYes{
+        display: none;
+        position: relative;
+        top: 90px;
+    }
+    h1.sheSaidNo{
+        display: none;
+        position: relative;
+        top: 90px;
+    }
+    
+</style>
+<body>
+    <div class="box">
+        <h1>Do you want to be my girlfriend?</h1>
+        <div class="yesNoBox">
+            <h1 class="sheSaidYes">I'll love you forever</h1>
+            <h1 class="sheSaidNo">You're a genius</h1>
+            <div class="yes" onclick="sheSaidYes()">
+                <h1>YES</h1>
+            </div>
+            <div class="no" onmouseover="mouseOverNo()" onmouseleave="mouseLeftNo()", onclick="sheSaidNo()">
+                <h1>NO</h1>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</body>
+<script>
+    mouseOver = false;
+    function randomHorizontal(){
+        return Math.floor(Math.random()*600);
+    }
+    function randomVertical(){
+        return Math.floor(Math.random()*250);;
+    }
+    function changeNoPosition(){
+        document.getElementsByClassName("no")[0].style.right = randomHorizontal()+"px";
+        document.getElementsByClassName("no")[0].style.top = randomVertical()+"px";
+    }
+    function mouseLeftNo(){
+        mouseOver = false;
+        console.log("left");
+    }
+    function mouseOverNo(){
+        mouseOver = true;
+        var overInterval = window.setInterval(function(){
+            if(mouseOver){
+                changeNoPosition();
+            }
+            else{
+                clearInterval(overInterval);
+            }
+        }, 10)
+    }
+    function sheSaidYes(){
+        document.getElementsByTagName("h1")[0].style.display="none";
+        document.getElementsByClassName("yes")[0].style.display="none";
+        document.getElementsByClassName("no")[0].style.display="none";
+        document.getElementsByClassName("sheSaidYes")[0].style.display = "block";
+    }
+    function sheSaidYes(){
+        document.getElementsByTagName("h1")[0].style.display="none";
+        document.getElementsByClassName("yes")[0].style.display="none";
+        document.getElementsByClassName("no")[0].style.display="none";
+        document.getElementsByClassName("sheSaidYes")[0].style.display = "block";
+    }
+    function sheSaidNo(){
+        document.getElementsByTagName("h1")[0].style.display="none";
+        document.getElementsByClassName("yes")[0].style.display="none";
+        document.getElementsByClassName("no")[0].style.display="none";
+        document.getElementsByClassName("sheSaidNo")[0].style.display = "block";
+    }
+</script>
+</html>
